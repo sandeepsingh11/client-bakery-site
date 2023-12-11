@@ -3,7 +3,20 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			products: Array<{
+				id: string,
+				name: string,
+				slug: string,
+				desc: string,
+				images?: Array<{
+					id: string,
+					name: string,
+					url: string,
+				}>,
+				displayPrice: number
+			}>;
+		}
 		// interface PageData {}
 		// interface Platform {}
 	}
