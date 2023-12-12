@@ -1,15 +1,6 @@
 import { json } from '@sveltejs/kit';
-import { Client, Environment } from 'square';
 import { randomUUID } from 'crypto';
-
-BigInt.prototype.toJSON = function () {
-    return this.toString();
-  };  
-
-const { paymentsApi, ordersApi, checkoutApi } = new Client({
-  accessToken: import.meta.env.VITE_SQUARE_ACCESS_TOKEN,
-  environment: Environment.Sandbox,
-});
+import { square } from '$lib/utils.js';
 
 export async function POST({ request }) {
   const { locationId, sourceId } = await request.json();
@@ -68,7 +59,7 @@ export async function POST({ request }) {
     //     sourceId
     // })
 
-    const { result } = await checkoutApi.createPaymentLink({
+    const { result } = await square.checkoutApi.createPaymentLink({
         idempotencyKey: randomUUID(),
         order: {
             locationId,
