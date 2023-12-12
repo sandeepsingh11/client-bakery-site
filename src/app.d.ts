@@ -14,6 +14,16 @@ declare global {
 					name: string,
 					url: string,
 				}>,
+				variations: Array<{
+					id: string,
+					name: string,
+					price: number,
+				}>,
+				mods: Array<{
+					id: string,
+					name: string,
+					price: number,
+				}>,
 				displayPrice: number
 			}>;
 		}
