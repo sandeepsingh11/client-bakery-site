@@ -1,3 +1,4 @@
+import { env } from "$env/dynamic/private";
 import { Client, Environment } from "square";
 
 // @ts-ignore
@@ -7,7 +8,7 @@ BigInt.prototype.toJSON = function () {
 
 export const square = new Client({
     accessToken: import.meta.env.VITE_SQUARE_ACCESS_TOKEN,
-    environment: Environment.Sandbox,
+    environment: (env.VITE_MODE === "dev") ? Environment.Sandbox : Environment.Production,
 });
 
 export async function mapProducts() {
