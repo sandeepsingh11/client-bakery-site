@@ -50,8 +50,8 @@
   
         if (paymentResponse.ok) {
           paymentStatus = 'Payment completed';
-          console.log(paymentResponse);
-          console.log(paymentResponse.paymentLink);
+          const resObj = await paymentResponse.json();
+          console.log(resObj.paymentLink.longUrl);
         } else {
           const errorBody = await paymentResponse.text();
           throw new Error(errorBody);
