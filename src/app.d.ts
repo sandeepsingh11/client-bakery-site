@@ -25,6 +25,25 @@ declare global {
 					price: number,
 				}>,
 				displayPrice: number
+			}>,
+			cart: Array<{
+				id: string,
+				productId: string,
+				name: string,
+				slug: string,
+				imageUrl?: string,
+				variation: {
+					id: string,
+					name: string,
+					price: number,
+				},
+				mods?: Array<{
+					id: string,
+					name: string,
+					price: number,
+				}>,
+				price: number,
+				quantity: number
 			}>;
 		}
 		// interface PageData {}

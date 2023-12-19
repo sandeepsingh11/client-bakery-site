@@ -1,5 +1,6 @@
 <script>
-  import "../app.pcss";
+  import CartPreview from "$lib/comp/cart-preview.svelte";
+import "../app.pcss";
   
   export let data;
 </script>
@@ -12,5 +13,11 @@
   <a href="/">Home</a>
   <a href="/bakery">Bakery</a>
 </nav>
+
+<div>
+  <CartPreview
+    cart={data.locals.cart}
+  />
+</div>
 
 <slot />
