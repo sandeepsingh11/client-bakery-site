@@ -8,7 +8,9 @@
         <p>{ item.name }</p>
     {/each}
 
-    <div>
-        <a href="/purchase">Checkout</a>
-    </div>
+    {#if cart.length > 0}
+        <div>
+            <a href="/checkout">Checkout</a>
+        </div>
+    {/if}
 </div>

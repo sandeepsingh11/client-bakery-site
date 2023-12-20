@@ -44,7 +44,8 @@ declare global {
 				}>,
 				price: number,
 				quantity: number
-			}>;
+			}>,
+			orderId?: string
 		}
 		// interface PageData {}
 		// interface Platform {}

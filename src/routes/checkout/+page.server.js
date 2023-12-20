@@ -1,7 +1,8 @@
+import { createOrderCookie } from '$lib/cookies';
 import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ locals, fetch }) {
+export async function load({ locals, fetch, cookies }) {
     const locationId = import.meta.env.VITE_LOCATION_ID;
     const cart = locals.cart;
 
@@ -18,6 +19,11 @@ export async function load({ locals, fetch }) {
 
     if (checkoutResponse.ok) {
         const res = await checkoutResponse.json();
+
+        // store Square Order data into locals and cookie
+        locals.orderId = res.relatedResources.orders[0].id,
+
+        createOrderCookie(cookies, locals.orderId);
 
         // redirect to Square checkout page
         throw redirect(303, res.paymentLink.longUrl);
