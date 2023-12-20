@@ -43,7 +43,7 @@ export async function mapProducts() {
                 images: productImages,
                 variations,
                 mods: modifiers,
-                displayPrice: Number(product.itemData.variations[0].itemVariationData.priceMoney.amount) / 100
+                displayPrice: Number(product.itemData?.variations?.at(0)?.itemVariationData?.priceMoney?.amount) / 100
             });
         }
     });

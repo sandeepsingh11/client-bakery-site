@@ -7,4 +7,8 @@
     {#each cart as item}
         <p>{ item.name }</p>
     {/each}
+
+    <div>
+        <a href="/purchase">Checkout</a>
+    </div>
 </div>
