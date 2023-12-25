@@ -9,6 +9,26 @@ media_folder:  "static/uploads"  # Media files will be stored in the repo under 
 public_folder:  "/uploads"  # The src attribute for uploaded media will begin with /uploads
 
 collections:
+  - label: Pages
+    name: pages
+    editor:
+      preview: false
+    files:
+      - label: Home
+        name: home
+        file: "src/lib/_data/pages/home.json"
+        fields:
+          - { name: heroSlogan, label: Slogan, widget: string }
+          - { name: heroDesc, label: Slogan Message, widget: string }
+          - { name: heroCTA, label: CTA, widget: string }
+          - { name: heroImage, label: Hero Image, widget: image }
+          - { name: heroImageAlt, label: Image Description, widget: string }
+          - name: productHighlight
+            label: Product Highlight
+            widget: list
+            allow_add: true
+            fields:
+            - { name: name, Label: Product Name, widget: string }
   - label: Settings
     name: settings
     editor:
