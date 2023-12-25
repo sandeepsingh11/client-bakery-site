@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# run "npx @staticcms/proxy-server"
+local_backend: true
+
+media_folder:  "static/uploads"  # Media files will be stored in the repo under static/uploads
+public_folder:  "/uploads"  # The src attribute for uploaded media will begin with /uploads
+
+collections:
+  - label: Settings
+    name: settings
+    editor:
+      preview: false
+    files:
+      - label: Navigation
+        name: navigation
+        file: "src/lib/_data/navigation.json"
+        fields:
+          - label: Navigation Items
+            name: navItems
+            widget: list
+            allow_add: true
+            collapsed: true
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: url, label: URL fragment, widget: string, hint: This should always start with a forward-slash "/". }
+              # - { name: cta, label: CTA, widget: boolean, default: false, hint: "When turned On, this link will be the highlighted link in the navigation bar and in the Home page's hero section. There should only be 1 CTA (Call to Action) link On at a time." }
