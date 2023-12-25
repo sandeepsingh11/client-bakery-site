@@ -5,7 +5,7 @@
     import "../app.pcss";
     
     export let data;
-    export const navItems = navigation;
+    export const navItems = navigation.navItems;
 
     /** @type {HTMLElement | null} */
     export let navMobileDropdown;
