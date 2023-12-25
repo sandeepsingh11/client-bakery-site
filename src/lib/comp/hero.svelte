@@ -1,7 +1,6 @@
 <script>
-    import home from "$lib/_data/pages/home.json";
-
-    export const _data = home;
+    /** @type {import('$lib/_data/pages/home.json')} */
+    export let _data;
 </script>
 
 <div class="min-h-screen bg-primary-300 flex flex-wrap items-center p-4">

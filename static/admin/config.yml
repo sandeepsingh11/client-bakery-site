@@ -28,7 +28,7 @@ collections:
             widget: list
             allow_add: true
             fields:
-            - { name: name, Label: Product Name, widget: string }
+            - { name: name, Label: Product Name, widget: string, hint: This name must exactly match Square's product name. }
   - label: Settings
     name: settings
     editor:
