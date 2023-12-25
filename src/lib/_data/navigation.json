@@ -1,12 +1,12 @@
 {
-    "navItems": [
-        {
-            "name": "Bakery",
-            "url": "/bakery"
-        },
-        {
-            "name": "About",
-            "url": "/about"
-        }
-    ]
+  "navItems": [
+    {
+      "name": "Bakery",
+      "url": "/bakery"
+    },
+    {
+      "name": "About",
+      "url": "/aboutt"
+    }
+  ]
 }
