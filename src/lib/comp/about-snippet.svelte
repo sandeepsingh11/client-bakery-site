@@ -16,7 +16,7 @@
         <div class="w-full md:w-1/2 p-8 pb-0">
             <p class="leading-8 mb-4">{ _data.aboutSnippet }</p>
 
-            <Button url="about" text="Read more" bgColor="primary" textColor="white" />
+            <Button url="about" text="Read more" />
         </div>
     </div>
 </section>

@@ -3,6 +3,7 @@
     import ProductHighlights from "$lib/comp/product-highlights.svelte";
     import home from "$lib/_data/pages/home.json";
     import AboutSnippet from "$lib/comp/about-snippet.svelte";
+    import Categories from "$lib/comp/categories.svelte";
 
     export const _data = home;
     export let data;
@@ -14,3 +15,5 @@
 <ProductHighlights _data={_data} products={data.locals.products} />
 
 <AboutSnippet _data={_data} />
+
+<Categories />
