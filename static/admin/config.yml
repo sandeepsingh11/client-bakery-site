@@ -29,6 +29,9 @@ collections:
             allow_add: true
             fields:
             - { name: name, Label: Product Name, widget: string, hint: This name must exactly match Square's product name. }
+          - { name: aboutImage, label: About Image, widget: image }
+          - { name: aboutImageAlt, label: About Image Description, widget: string }
+          - { name: aboutSnippet, label: About Snippet, widget: markdown }
   - label: Settings
     name: settings
     editor:
