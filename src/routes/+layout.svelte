@@ -1,11 +1,11 @@
 <script>
-    import navigation from "$lib/_data/navigation.json";
+    import { navItems } from "$lib/_data/navigation.json";
     import CartPreview from "$lib/comp/cart-preview.svelte";
     import { onMount } from "svelte";
     import "../app.pcss";
+    import Footer from "$lib/comp/footer.svelte";
     
     export let data;
-    export const navItems = navigation.navItems;
 
     /** @type {HTMLElement | null} */
     export let navMobileDropdown;
@@ -68,3 +68,5 @@
 </div>
 
 <slot />
+
+<Footer navItems={navItems} />

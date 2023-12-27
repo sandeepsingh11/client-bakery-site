@@ -74,3 +74,15 @@ collections:
               - { name: name, label: Name, widget: string }
               - { name: url, label: URL fragment, widget: string, hint: This should always start with a forward-slash "/". }
               # - { name: cta, label: CTA, widget: boolean, default: false, hint: "When turned On, this link will be the highlighted link in the navigation bar and in the Home page's hero section. There should only be 1 CTA (Call to Action) link On at a time." }
+      - label: Socials
+        name: socials
+        file: "src/lib/_data/socials.json"
+        fields:
+          - label: Socials
+            name: socials
+            widget: list
+            allow_add: true
+            fields:
+              - { name: name, label: Name, widget: string, hint: Please do not change this name! }
+              - { name: url, label: Social URL, widget: string, required: false }
+              - { name: isActive, label: Display, widget: boolean, hint: Toggle to display or hide on the website }
