@@ -17,7 +17,7 @@
             <h1 class="mb-2 text-5xl lg:text-6xl">{ _data.heroSlogan }</h1>
             <p class="mb-4">{ _data.heroDesc }</p>
     
-            <Button url="bakery" text="{ _data.heroCTA }" bgColor="primary" textColor="white" />
+            <Button url="bakery" text="{ _data.heroCTA }" />
         </div>
     </div>
 </div>

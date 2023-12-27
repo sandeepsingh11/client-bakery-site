@@ -32,6 +32,30 @@ collections:
           - { name: aboutImage, label: About Image, widget: image }
           - { name: aboutImageAlt, label: About Image Description, widget: string }
           - { name: aboutSnippet, label: About Snippet, widget: markdown }
+  - label: Events
+    name: events
+    editor:
+      preview: false
+    files:
+      - label: Events
+        name: events
+        file: "src/lib/_data/events.json"
+        fields:
+          - label: Events
+            name: events
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: '{{fields.title}} ({{fields.date}})'
+            fields:
+            - { name: title, label: Event Name, widget: string }
+            - { name: desc, label: Event Description, widget: string }
+            - { name: address, label: Event Address, widget: string, required: false }
+            - { name: thumbnail, label: Event thumbnail, widget: image, required: false }
+            - { name: thumbnailAlt, label: Event thumbnail name, widget: string, required: false }
+            - { name: url, label: Event URL, widget: string, required: false }
+            - { name: date, label: Event Date, widget: datetime, date_format: 'do MMM yyyy', time_format: false, format: 'yyyy-MMM-dd' }
+            - { name: time, label: Event time, widget: datetime, date_format: false, time_format: 'hh:mm aa', format: 'HH:mm' }
   - label: Settings
     name: settings
     editor:
