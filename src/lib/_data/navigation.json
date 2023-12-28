@@ -3,10 +3,6 @@
         {
             "name": "Bakery",
             "url": "/bakery"
-        },
-        {
-            "name": "About",
-            "url": "/about"
         }
     ]
 }

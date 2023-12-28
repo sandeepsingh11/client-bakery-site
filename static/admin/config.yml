@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  branch: master # Branch to update (optional; defaults to master)
 
 # run "npx @staticcms/proxy-server"
 local_backend: true
@@ -9,6 +9,53 @@ media_folder:  "static/uploads"  # Media files will be stored in the repo under 
 public_folder:  "/uploads"  # The src attribute for uploaded media will begin with /uploads
 
 collections:
+  - label: Pages
+    name: pages
+    editor:
+      preview: false
+    files:
+      - label: Home
+        name: home
+        file: "src/lib/_data/pages/home.json"
+        fields:
+          - { name: heroSlogan, label: Slogan, widget: string }
+          - { name: heroDesc, label: Slogan Message, widget: string }
+          - { name: heroCTA, label: CTA, widget: string }
+          - { name: heroImage, label: Hero Image, widget: image }
+          - { name: heroImageAlt, label: Image Description, widget: string }
+          - name: productHighlight
+            label: Product Highlight
+            widget: list
+            allow_add: true
+            fields:
+            - { name: name, Label: Product Name, widget: string, hint: This name must exactly match Square's product name. }
+          - { name: aboutImage, label: About Image, widget: image }
+          - { name: aboutImageAlt, label: About Image Description, widget: string }
+          - { name: aboutSnippet, label: About Snippet, widget: markdown }
+  - label: Events
+    name: events
+    editor:
+      preview: false
+    files:
+      - label: Events
+        name: events
+        file: "src/lib/_data/events.json"
+        fields:
+          - label: Events
+            name: events
+            widget: list
+            allow_add: true
+            collapsed: true
+            summary: '{{fields.title}} ({{fields.date}})'
+            fields:
+            - { name: title, label: Event Name, widget: string }
+            - { name: desc, label: Event Description, widget: string }
+            - { name: address, label: Event Address, widget: string, required: false }
+            - { name: thumbnail, label: Event thumbnail, widget: image, required: false }
+            - { name: thumbnailAlt, label: Event thumbnail name, widget: string, required: false }
+            - { name: url, label: Event URL, widget: string, required: false }
+            - { name: date, label: Event Date, widget: datetime, date_format: 'do MMM yyyy', time_format: false, format: 'yyyy-MMM-dd' }
+            - { name: time, label: Event time, widget: datetime, date_format: false, time_format: 'hh:mm aa', format: 'HH:mm' }
   - label: Settings
     name: settings
     editor:
@@ -27,3 +74,15 @@ collections:
               - { name: name, label: Name, widget: string }
               - { name: url, label: URL fragment, widget: string, hint: This should always start with a forward-slash "/". }
               # - { name: cta, label: CTA, widget: boolean, default: false, hint: "When turned On, this link will be the highlighted link in the navigation bar and in the Home page's hero section. There should only be 1 CTA (Call to Action) link On at a time." }
+      - label: Socials
+        name: socials
+        file: "src/lib/_data/socials.json"
+        fields:
+          - label: Socials
+            name: socials
+            widget: list
+            allow_add: true
+            fields:
+              - { name: name, label: Name, widget: string, hint: Please do not change this name! }
+              - { name: url, label: Social URL, widget: string, required: false }
+              - { name: isActive, label: Display, widget: boolean, hint: Toggle to display or hide on the website }
