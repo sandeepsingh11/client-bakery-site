@@ -1,11 +1,14 @@
 {
-    "heroImage": "https://placehold.co/500",
-    "heroImageAlt": "My awesome product",
-    "heroSlogan": "Yummy Pasteries!",
-    "heroDesc": "Handbaked by yours truely, these are one of a kind!",
-    "heroCTA": "Browse the bakery!",
-    "productHighlight": ["Murican Burger", "Ko-hi-"],
-    "aboutImage": "https://placehold.co/500",
-    "aboutImageAlt": "An image of me",
-    "aboutSnippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque euismod vulputate. Nunc nec odio sed tellus sagittis dictum. Proin nec gravida lectus. Maecenas a augue sit amet sapien suscipit accumsan et et nisi. Ut molestie leo non diam bibendum, vel semper turpis suscipit. Cras vel nisl in neque dignissim consequat. Nullam non volutpat magna, pretium tempor odio. Vivamus rhoncus magna non est laoreet facilisis. Ut dolor ligula, dignissim quis congue eu, consectetur sit amet dui. Curabitur a lacus pulvinar, pellentesque urna eget, laoreet sem. Nullam posuere convallis tortor at ornare. Suspendisse et mauris lorem. Integer bibendum, massa et mollis molestie, odio magna aliquet metus, molestie tincidunt est justo eu felis. Nam elementum justo non consequat posuere. Nunc luctus tempor purus. Aenean elementum ultricies cursus."
+  "heroImage": "https://placehold.co/500",
+  "heroImageAlt": "My awesome product",
+  "heroSlogan": "Yummy Pasteries!",
+  "heroDesc": "Handbaked by yours truely, these are one of a kind!",
+  "heroCTA": "Browse the bakery!",
+  "productHighlight": [
+    "Egg Tofu",
+    "Latte"
+  ],
+  "aboutImage": "https://placehold.co/500",
+  "aboutImageAlt": "An image of me",
+  "aboutSnippet": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque euismod vulputate. Nunc nec odio sed tellus sagittis dictum. Proin nec gravida lectus. Maecenas a augue sit amet sapien suscipit accumsan et et nisi. Ut molestie leo non diam bibendum, vel semper turpis suscipit. Cras vel nisl in neque dignissim consequat. Nullam non volutpat magna, pretium tempor odio. Vivamus rhoncus magna non est laoreet facilisis. Ut dolor ligula, dignissim quis congue eu, consectetur sit amet dui. Curabitur a lacus pulvinar, pellentesque urna eget, laoreet sem. Nullam posuere convallis tortor at ornare. Suspendisse et mauris lorem. Integer bibendum, massa et mollis molestie, odio magna aliquet metus, molestie tincidunt est justo eu felis. Nam elementum justo non consequat posuere. Nunc luctus tempor purus. Aenean elementum ultricies cursus."
 }
