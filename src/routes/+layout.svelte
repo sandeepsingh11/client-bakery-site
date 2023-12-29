@@ -9,9 +9,18 @@
 
     /** @type {HTMLElement | null} */
     export let navMobileDropdown;
+    /** @type {HTMLElement | null} */
+    export let navEle;
+    /** @type {HTMLElement | null} */
+    export let mainEle;
 
     onMount(() => {
         navMobileDropdown = document.getElementById('nav-mobile-dropdown');
+        
+        // offset body by the nav's height amount
+        navEle = document.getElementById('nav');
+        mainEle = document.getElementById('main');
+        if (mainEle) mainEle.style.marginTop = navEle?.clientHeight + 'px';
     });
 
     function toggleMobileDropdown() {
@@ -32,7 +41,7 @@
 </svelte:head>
 
 <div class="relative">
-    <nav class="fixed top-0 left-0 w-full">
+    <nav class="fixed top-0 left-0 w-full bg-primary-300" id="nav">
         <!-- mobile nav -->
         <div class="md:hidden flex justify-between bg-primary-200" on:focusout={handleDropdownFocusLoss}>
             <div><a href="/">Home</a></div>
@@ -67,6 +76,8 @@
     <CartPreview cart={data.locals.cart} />
 </div>
 
-<slot />
+<main class="min-h-screen" id="main">
+    <slot />
+</main>
 
 <Footer navItems={navItems} />

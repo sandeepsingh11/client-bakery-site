@@ -19,12 +19,14 @@
     });
 </script>
 
-<section class="py-12">
+<section class="py-12 px-8">
     <h2 class="text-center text-5xl mb-8">Customer favs</h2>
 
-    <div class="flex flex-wrap justify-center">
+    <div class="flex flex-wrap justify-center gap-4">
         {#each matchedProducts as item}
-            <Card item={item} />
+            <div class="w-[200px] md:w-[225px] xl:w-[300px]">
+                <Card item={item} />
+            </div>
         {/each}
     </div>
 </section>
