@@ -24,6 +24,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "lucide-svelte": "^0.302.0",
     "square": "^33.0.0"
   }

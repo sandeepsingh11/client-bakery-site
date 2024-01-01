@@ -1,45 +1,73 @@
 <script>
+    import { ShoppingCart } from 'lucide-svelte';
+
     /** @type {import('./$types').PageServerData} */
     export let data;
 
     export let product = data.product;
 </script>
 
-<h1>{ product.name }</h1>
-<p>{ product.desc }</p>
-{#if product.images }
-    {#each product.images as image}
-        <div>
-            <img src="{ image.url }" alt="{ image.name }">
-        </div>
-    {/each}
-{/if}
-<form action="?/add" method="post">
-    <div>
-        {#if product.variations.length > 0}
-            <p>Variations:</p>
-            <select name="variation" required>
-                {#each product.variations as variation}
-                    <option value="{ variation.id }">{ variation.name } - { variation.price }</option>
+<div class="p-8 md:p-12">
+    <div class="flex flex-wrap justify-center">
+        <!-- product image -->
+        <div class="w-[275px] md:w-[375px] xl:w-[500px] mx-auto md:mx-0 mb-8">
+            {#if product.images }
+                {#each product.images as image}
+                    <div class="w-full h-[275px] md:h-[375px] xl:h-[500px]">
+                        <img src="{ image.url }" alt="{ image.name }" class="w-full h-full object-cover rounded">
+                    </div>
                 {/each}
-            </select>
-        {/if}
-
-        {#if product.mods.length > 0}
-            <p>Mods:</p>
-            {#each product.mods as mod}
-                <div>
-                    <input type="checkbox" name="mods" id="mod-{ mod.name }" value="{ mod.id }">
-                    <label for="mod-{ mod.name }">{ mod.name } - { mod.price || 0 }</label>
+            {:else}
+                <div class="w-full h-[275px] md:h-[375px] xl:h-[500px]">
+                    <img src="https://placehold.co/500" alt="placeholder" class="w-full h-full object-cover rounded">
                 </div>
-            {/each}
-        {/if}
+            {/if}
+        </div>
 
-        <div>
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" value="1" required>
+        <!-- product info -->
+        <div class="md:ml-12">
+            <div class="mb-8">
+                <h1 class="text-3xl lg:text-5xl font-medium mb-2 md:mt-2">{ product.name }</h1>
+                <p class="text-lg">{ product.desc ?? '' }</p>
+            </div>
+
+            <form action="?/add" method="post">
+                <div>
+                    {#if product.variations.length > 0}
+                        <div class="mb-8">
+                            <h3 class="text-2xl mb-2">Set:</h3>
+
+                            <div>
+                                {#each product.variations as variation}
+                                    <div class="mb-2">
+                                        <input type="radio" name="variation" id="{variation.id}" class="w-5 h-5 checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500" required>
+                                        <label for="{variation.id}">{variation.name} - ${variation.price}</label>
+                                    </div>
+                                {/each}
+                            </div>
+                        </div>
+                    {/if}
+            
+                    {#if product.mods.length > 0}
+                        <div class="mb-8">
+                            <h3 class="text-2xl mb-2">Options:</h3>
+                            {#each product.mods as mod}
+                                <div class="mb-1">
+                                    <input type="checkbox" name="mods" id="mod-{ mod.id }" value="{ mod.id }" class="rounded checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500">
+                                    <label for="mod-{ mod.id }">{ mod.name } - ${ mod.price || 0 }</label>
+                                </div>
+                            {/each}
+                        </div>
+                    {/if}
+            
+                    <div class="mb-8">
+                        <label for="quantity" class="block text-2xl">Quantity:</label>
+                        <input type="number" name="quantity" id="quantity" value="1" class="w-[80px] rounded focus:ring-primary-500 focus:border-primary-500" required>
+                    </div>
+                </div>
+            
+                <button class="block w-full py-3 px-4 rounded-sm bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white focus:ring-2 focus:ring-primary-200 focus:outline-none"><ShoppingCart class="inline-block" size=16 /> Add to cart</button>
+            </form>
         </div>
     </div>
-
-    <button>Add to cart</button>
-</form>
+</div>
