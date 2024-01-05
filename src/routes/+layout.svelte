@@ -4,6 +4,7 @@
     import { onMount } from "svelte";
     import "../app.pcss";
     import Footer from "$lib/comp/footer.svelte";
+    import { ShoppingCart, X } from "lucide-svelte";
     
     export let data;
 
@@ -13,9 +14,16 @@
     export let navEle;
     /** @type {HTMLElement | null} */
     export let mainEle;
+    /** @type {HTMLElement | null} */
+    export let cartPanelContainer;
+    /** @type {HTMLElement | null} */
+    export let cartPanelEle;
+    export let showCart = false; 
 
     onMount(() => {
         navMobileDropdown = document.getElementById('nav-mobile-dropdown');
+        cartPanelContainer = document.getElementById('cart-panel-container');
+        cartPanelEle = document.getElementById('cart-panel');
         
         // offset body by the nav's height amount
         navEle = document.getElementById('nav');
@@ -34,6 +42,10 @@
         if (relatedTarget instanceof HTMLElement && currentTarget.contains(relatedTarget)) return // check if the new focus target doesn't present in the dropdown tree (exclude ul\li padding area because relatedTarget, in this case, will be null
         navMobileDropdown?.classList.add('hidden');
     }
+
+    function onCartClick() {
+        showCart = !showCart;
+    }
 </script>
 
 <svelte:head>
@@ -41,18 +53,19 @@
 </svelte:head>
 
 <div class="relative">
-    <nav class="fixed top-0 left-0 w-full bg-primary-300" id="nav">
+    <nav class="z-10 fixed top-0 left-0 w-full bg-primary-300" id="nav">
         <!-- mobile nav -->
         <div class="md:hidden flex justify-between bg-primary-200" on:focusout={handleDropdownFocusLoss}>
             <div><a href="/">Home</a></div>
 
             <!-- hamburger -->
             <div>
-                <button type="button" id="nav-mobile-hamburger" on:click={toggleMobileDropdown}>X</button>
+                <button type="button" id="nav-mobile-hamburger" on:click={toggleMobileDropdown}><X size=24 class="inline-block" /></button>
+                <button on:click={() => onCartClick()}><ShoppingCart class="inline-block mr-2" size=16 /></button>
             </div>
 
             <!-- mobile -->
-            <div class="hidden absolute top-0 left-0 w-full mt-6 flex flex-col bg-inherit text-center text-lg" id="nav-mobile-dropdown">
+            <div class="hidden z-10 absolute top-0 left-0 w-full mt-6 flex flex-col bg-inherit text-center text-lg" id="nav-mobile-dropdown">
                 {#each navItems as item}
                     <a href="{ item.url }" class="block">{ item.name }</a>
                 {/each}
@@ -63,20 +76,25 @@
         <div class="hidden md:flex justify-between">
             <div><a href="/">Home</a></div>
 
-            <div>
+            <div class="mr-2">
                 {#each navItems as item}
                     <a href="{ item.url }" class="inline-block py-2 px-3">{ item.name }</a>
                 {/each}
+
+                <button on:click={() => onCartClick()}><ShoppingCart class="inline-block" size=16 /> Cart</button>
             </div>
         </div>
     </nav>
+
+    <!-- cart side-panel -->
+    <div id="cart-panel-container" on:focusout={handleDropdownFocusLoss}>
+        {#if showCart}
+            <CartPreview cart={data.locals.cart} on:x={() => onCartClick()} />
+        {/if}
+    </div>
 </div>
 
-<div>
-    <CartPreview cart={data.locals.cart} />
-</div>
-
-<main class="min-h-screen" id="main">
+<main class="min-h-screen relative" id="main">
     <slot />
 </main>
 

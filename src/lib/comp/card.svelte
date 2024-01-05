@@ -1,8 +1,13 @@
 <script>
+    import { addToCart } from "$lib/cart";
     import { Cookie, ShoppingCart } from "lucide-svelte";
 
     /** @type {App.Locals['products'][0]} */
     export let item;
+
+    function onCartClick() {
+        // addToCart(locals, cookies, )
+    }
 </script>
 
 <div class="w-full lg:w-[225px] xl:w-[300px] mx-auto">
@@ -21,7 +26,7 @@
 
     <!-- buttons -->
     <div class="flex flex-row text-center">
-        <a href="/bakery/{ item.slug }" class="inline-block w-1/2 rounded-l p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white"><Cookie size=16 class="inline" /> View</a>
-        <button class="inline-block w-1/2 p-2 rounded-r bg-secondary-600 hover:bg-secondary-500 focus:bg-secondary-500 text-black"><ShoppingCart size=16 class="inline" /> Add</button>
+        <a href="/bakery/{ item.slug }" class="inline-block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white"><Cookie size=16 class="inline" /> View</a>
+        <!-- <button class="inline-block w-1/2 p-2 rounded-r bg-secondary-600 hover:bg-secondary-500 focus:bg-secondary-500 text-black" on:click={onCartClick}><ShoppingCart size=16 class="inline" /> Add</button> -->
     </div>
 </div>

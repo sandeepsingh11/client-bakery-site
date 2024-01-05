@@ -37,7 +37,7 @@ export const actions = {
         if (product === undefined) return;
 
         // get the selected product variation
-        /** @type {typeof locals.cart[0]['variation']} */
+        /** @type {typeof locals.cart[0]['variation'] | undefined} */
         let variation;
         product.variations.forEach(v => {
             if (variationId === v.id) {
@@ -56,12 +56,12 @@ export const actions = {
         /** @type {typeof locals.cart[0]['mods']} */
         let mods = [];
         modIds.forEach(modId => {
-            product.mods.forEach(m => {
+            product?.mods.forEach(m => {
                 if (modId === m.id) {
                     mods?.push({
                         id: m.id,
                         name: m.name,
-                        price: m.price
+                        price: m.price || 0.00 // "||" to handle NaN value
                     });
                     return;
                 }

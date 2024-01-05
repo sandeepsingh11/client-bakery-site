@@ -40,7 +40,7 @@
                             <div>
                                 {#each product.variations as variation}
                                     <div class="mb-2">
-                                        <input type="radio" name="variation" id="{variation.id}" class="w-5 h-5 checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500" required>
+                                        <input type="radio" name="variation" id="{variation.id}" value="{variation.id}" class="w-5 h-5 checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500" required>
                                         <label for="{variation.id}">{variation.name} - ${variation.price}</label>
                                     </div>
                                 {/each}
