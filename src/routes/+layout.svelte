@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
     import "../app.pcss";
     import Footer from "$lib/comp/footer.svelte";
-    import { ShoppingCart, X } from "lucide-svelte";
+    import { Menu, ShoppingCart, X } from "lucide-svelte";
     
     export let data;
 
@@ -18,6 +18,7 @@
     export let cartPanelContainer;
     /** @type {HTMLElement | null} */
     export let cartPanelEle;
+    export let showMobileMenu = false; 
     export let showCart = false; 
 
     onMount(() => {
@@ -33,6 +34,7 @@
 
     function toggleMobileDropdown() {
         navMobileDropdown?.classList.toggle('hidden')
+        showMobileMenu = !showMobileMenu;
     }
 
     // collapse mobile dropdown when clicking outside of dropdown
@@ -59,9 +61,15 @@
             <div><a href="/">Home</a></div>
 
             <!-- hamburger -->
-            <div>
-                <button type="button" id="nav-mobile-hamburger" on:click={toggleMobileDropdown}><X size=24 class="inline-block" /></button>
-                <button on:click={() => onCartClick()}><ShoppingCart class="inline-block mr-2" size=16 /></button>
+            <div class="mr-2">
+                <button on:click={() => onCartClick()}>({data.locals.cart.length}) <ShoppingCart class="inline-block" size=18 /></button>
+                <button type="button" id="nav-mobile-hamburger" on:click={toggleMobileDropdown}>
+                    {#if showMobileMenu}
+                        <X size=24 class="inline-block" />    
+                    {:else}
+                        <Menu size=24 class="inline-block" />
+                    {/if}
+                </button>
             </div>
 
             <!-- mobile -->
@@ -81,7 +89,7 @@
                     <a href="{ item.url }" class="inline-block py-2 px-3">{ item.name }</a>
                 {/each}
 
-                <button on:click={() => onCartClick()}><ShoppingCart class="inline-block" size=16 /> Cart</button>
+                <button on:click={() => onCartClick()}><ShoppingCart class="inline-block" size=16 /> Cart ({data.locals.cart.length})</button>
             </div>
         </div>
     </nav>

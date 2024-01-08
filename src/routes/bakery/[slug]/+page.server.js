@@ -1,4 +1,5 @@
 import { addToCart } from '$lib/cart';
+import { redirect } from '@sveltejs/kit';
 import { randomUUID } from 'crypto';
 
 /** @type {import('./$types').PageServerLoad} */
@@ -87,5 +88,7 @@ export const actions = {
         };
 
         addToCart(locals, cookies, cartData);
+
+        throw redirect(302, '/bakery');
     }
 };

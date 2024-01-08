@@ -1,5 +1,4 @@
 import { removeFromCart } from '$lib/cart';
-import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ locals }) => {

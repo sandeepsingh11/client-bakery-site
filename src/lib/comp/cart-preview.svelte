@@ -15,7 +15,7 @@
 
 <div class="z-10 fixed top-0 right-0 bg-white w-full md:w-[350px] h-full overflow-y-auto border-l" id="cart-panel">
     <div class="p-4">
-        <div class="flex justify-between mb-2">
+        <div class="flex justify-between mb-6">
             <h4 class="text-lg font-medium">Cart:</h4>
             <button on:click={() => dispatch('x')}><X /></button>
         </div>
