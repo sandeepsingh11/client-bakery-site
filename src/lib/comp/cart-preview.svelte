@@ -30,9 +30,15 @@
                     </div>
             
                     <!-- item text -->
-                    <div class="ml-2 md:ml-4 py-1">
+                    <div class="ml-2 md:ml-4 py-1 grow">
                         <div>
-                            <h4 class="text-lg md:text-xl font-medium mb-1">{ item.name }</h4>
+                            <div class="flex justify-between">
+                                <h4 class="text-lg md:text-xl font-medium mb-1">{ item.name }</h4>
+                                <form action="/bakery?/removeItem" method="post">
+                                    <button><X /></button>
+                                    <input type="hidden" name="itemId" value="{item.id}">
+                                </form>
+                            </div>
                             <p class="mb-px">{ item.variation.name } (${ item.variation.price })</p>
         
                             {#if item.mods}
