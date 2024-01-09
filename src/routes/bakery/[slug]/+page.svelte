@@ -41,7 +41,7 @@
                                 {#each product.variations as variation}
                                     <div class="mb-2">
                                         <input type="radio" name="variation" id="{variation.id}" value="{variation.id}" class="w-5 h-5 checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500" required>
-                                        <label for="{variation.id}">{variation.name} - ${variation.price}</label>
+                                        <label for="{variation.id}">{variation.name} - ${variation.price.toFixed(2)}</label>
                                     </div>
                                 {/each}
                             </div>
@@ -54,7 +54,7 @@
                             {#each product.mods as mod}
                                 <div class="mb-1">
                                     <input type="checkbox" name="mods" id="mod-{ mod.id }" value="{ mod.id }" class="rounded checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500">
-                                    <label for="mod-{ mod.id }">{ mod.name } - ${ mod.price || 0 }</label>
+                                    <label for="mod-{ mod.id }">{ mod.name } - ${ (mod.price) ? mod.price.toFixed(2) : '0.00' }</label>
                                 </div>
                             {/each}
                         </div>

@@ -20,7 +20,7 @@
     <div class="py-2 px-2">
         <div class="flex justify-between items-center">
             <h3 class="mb-1 text-xl font-medium">{ item.name }</h3>
-            <p>${ item.displayPrice }</p>
+            <p>${ item.displayPrice.toFixed(2) }</p>
         </div>
     </div>
 

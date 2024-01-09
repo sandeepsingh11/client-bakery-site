@@ -39,16 +39,16 @@
                                     <input type="hidden" name="itemId" value="{item.id}">
                                 </form>
                             </div>
-                            <p class="mb-px">{ item.variation.name } (${ item.variation.price })</p>
+                            <p class="mb-px">{ item.variation.name } (${ item.variation.price.toFixed(2) })</p>
         
                             {#if item.mods}
                                 {#each item.mods as mod}
-                                    <p class="text-sm mb-px ml-1">{ mod.name } (${ mod.price })</p>
+                                    <p class="text-sm mb-px ml-1">{ mod.name } (${ mod.price.toFixed(2) })</p>
                                 {/each}
                             {/if}
         
                             <p class="mb-px">Qty: { item.quantity }</p>
-                            <p class="font-medium">${ item.price * item.quantity }</p>
+                            <p class="font-medium">${ (item.price * item.quantity).toFixed(2) }</p>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div>
-                    <span class="font-medium">${ subtotal }</span>
+                    <span class="font-medium">${ subtotal.toFixed(2) }</span>
                 </div>
             </div>
 
