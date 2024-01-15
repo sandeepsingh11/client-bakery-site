@@ -5,6 +5,7 @@
     import "../app.pcss";
     import Footer from "$lib/comp/footer.svelte";
     import { Menu, ShoppingCart, X } from "lucide-svelte";
+    import { afterNavigate } from "$app/navigation";
     
     export let data;
 
@@ -31,6 +32,11 @@
         mainEle = document.getElementById('main');
         if (mainEle) mainEle.style.marginTop = navEle?.clientHeight + 'px';
     });
+
+    afterNavigate(() => {
+        // close cart panel after page change
+        showCart = false;
+    })
 
     function toggleMobileDropdown() {
         navMobileDropdown?.classList.toggle('hidden')

@@ -17,6 +17,6 @@
 
 <AboutSnippet _data={_data} />
 
-<Categories />
+<!-- <Categories /> -->
 
 <Events />
