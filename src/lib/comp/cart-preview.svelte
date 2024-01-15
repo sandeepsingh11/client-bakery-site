@@ -1,4 +1,5 @@
 <script>
+    import { deleteCookieByName, getCookieByName, writeCookie } from "$lib/cookies";
     import { CreditCard, X } from "lucide-svelte";
     import { createEventDispatcher } from "svelte";
 
@@ -11,12 +12,20 @@
     cart.forEach(item => {
         subtotal += (item.price * item.quantity);
     });
+
+    function demo() {
+        writeCookie('demo', '{a: 1, b: 2}');
+
+        // console.log(getCookieByName('demo'));
+
+        // deleteCookieByName('demo');
+    }
 </script>
 
 <div class="z-10 fixed top-0 right-0 bg-white w-full md:w-[350px] h-full overflow-y-auto border-l" id="cart-panel">
     <div class="p-4">
         <div class="flex justify-between mb-6">
-            <h4 class="text-lg font-medium">Cart:</h4>
+            <button class="text-lg font-medium" on:click={demo}>Cart:</button>
             <button on:click={() => dispatch('x')}><X /></button>
         </div>
 

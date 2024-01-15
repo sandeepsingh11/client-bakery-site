@@ -2,13 +2,61 @@ export const cartCookieName = 'ob_cart';
 export const orderCookieName = 'ob_order';
 
 /**
- * Set the cart cookie
- * @param {import ('@sveltejs/kit').Cookies} cookies
- * @param {App.Locals["cart"]} cart
+ * Write data to a new or existing cookie.
+ * @param {string} name 
+ * @param {*} data 
+ * @param {number} expDays 
  */
-export function createCartCookie(cookies, cart) {
-    cookies.set(cartCookieName, btoa(JSON.stringify(cart)), {
-        path: '/'
+export function writeCookie(name, data, expDays = 14) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+    const expValue = `expires=${date.toUTCString()}`;
+
+    data = btoa(JSON.stringify(data));
+
+    const https = (document.URL.indexOf('localhost')) ? false : true;
+
+    document.cookie = `${name}=${data};${expValue};path=/;SameSite=Lax;${(https) ? 'Secure' : ''}`;
+}
+
+/**
+ * Get cookie by name.
+ * @param {string} name 
+ * @return {any | undefined} cookie or undefined
+ */
+export function getCookieByName(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        const value = parts?.pop()?.split(';').shift();
+        if (value) return JSON.parse(atob(value));
+    }
+
+    return undefined;
+}
+
+/**
+ * Delete the specified cookie.
+ * @param {string} name 
+ */
+export function deleteCookieByName(name) {
+    writeCookie(name, '', -1);
+}
+
+/**
+ * Set a cookie via the server
+ * @param {import ('@sveltejs/kit').Cookies} cookies
+ * @param {string} name
+ * @param {*} data
+ * @param {number} expDays
+ */
+export function writeCookieViaServer(cookies, name, data, expDays = 14) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+
+    cookies.set(name, btoa(JSON.stringify(data)), {
+        path: '/',
+        expires: date
     });
 }
 
@@ -18,17 +66,6 @@ export function createCartCookie(cookies, cart) {
  */
 export function getCart(encodedCart) {
     return JSON.parse(atob(encodedCart));
-}
-
-/**
- * Set the order cookie
- * @param {import ('@sveltejs/kit').Cookies} cookies
- * @param {App.Locals["orderId"]} orderId
- */
-export function createOrderCookie(cookies, orderId) {
-    cookies.set(orderCookieName, btoa(JSON.stringify(orderId)), {
-        path: '/'
-    });
 }
 
 /**

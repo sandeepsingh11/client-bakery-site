@@ -1,4 +1,4 @@
-import { createCartCookie } from './cookies';
+import { cartCookieName, writeCookieViaServer } from './cookies';
 
 /**
  * Add item to locals cart and update cart cookie
@@ -9,7 +9,7 @@ import { createCartCookie } from './cookies';
 export function addToCart(locals, cookies, cartData) {
     locals.cart.push(cartData);
 
-    createCartCookie(cookies, locals.cart);
+    writeCookieViaServer(cookies, cartCookieName, locals.cart);
 }
 
 /**

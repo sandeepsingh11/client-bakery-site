@@ -1,4 +1,4 @@
-import { createOrderCookie } from '$lib/cookies';
+import { orderCookieName, writeCookieViaServer } from '$lib/cookies';
 import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
@@ -23,7 +23,7 @@ export async function load({ locals, fetch, cookies }) {
         // store Square Order data into locals and cookie
         locals.orderId = res.relatedResources.orders[0].id,
 
-        createOrderCookie(cookies, locals.orderId);
+        writeCookieViaServer(cookies, orderCookieName, locals.orderId);
 
         // redirect to Square checkout page
         throw redirect(303, res.paymentLink.longUrl);
