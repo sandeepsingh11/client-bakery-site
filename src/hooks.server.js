@@ -1,11 +1,28 @@
-import { cartCookieName, createCartCookie, deleteCookie, getCart, getCookie, getOrder, orderCookieName } from '$lib/cookies';
+import { cartCookieName, deleteCookie, getCart, getCookie, getOrder, orderCookieName, writeCookieViaServer } from '$lib/cookies';
 import { mapProducts, square } from '$lib/utils';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
     // get and map Square products
     if (!event.locals.products) {
-        event.locals.products = await mapProducts();
+        let products;
+
+        if (!(products = event.cookies.get('ob_products'))) {
+            // fetch products
+            event.locals.products = await mapProducts();
+
+            let date = new Date();
+            date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
+
+            // store products for a day to prevent constant fetching
+            event.cookies.set('ob_products', JSON.stringify(event.locals.products), {
+                path: '/',
+                expires: date 
+            });
+        }
+        else {
+            event.locals.products = JSON.parse(products);
+        }
     }
 
     // check if order cookie exists. If so and if the customer has paid for it, clear
@@ -31,7 +48,7 @@ export async function handle({ event, resolve }) {
     if (!encodedCart) {
         event.locals.cart = Array();
 
-        createCartCookie(event.cookies, event.locals.cart);
+        writeCookieViaServer(event.cookies, cartCookieName, event.locals.cart);
     }
     // otherwise set the existing cart
     else {
