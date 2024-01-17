@@ -48,7 +48,7 @@
                                     <input type="hidden" name="itemId" value="{item.id}">
                                 </form>
                             </div>
-                            <p class="mb-px">{ item.variation.name } (${ item.variation.price.toFixed(2) })</p>
+                            <p class="mb-px">{ item.variation.name } (${ (item.variation.price) ? item.variation.price.toFixed(2) : '0.00' })</p>
         
                             {#if item.mods}
                                 {#each item.mods as mod}

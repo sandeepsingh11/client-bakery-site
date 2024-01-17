@@ -1,4 +1,4 @@
-import { cartCookieName, deleteCookie, getCart, getCookie, getOrder, orderCookieName, writeCookieViaServer } from '$lib/cookies';
+import { cartCookieName, getCart, getOrder, orderCookieName, writeCookieViaServer } from '$lib/cookies';
 import { mapProducts, square } from '$lib/utils';
 
 /** @type {import('@sveltejs/kit').Handle} */
@@ -27,7 +27,7 @@ export async function handle({ event, resolve }) {
 
     // check if order cookie exists. If so and if the customer has paid for it, clear
     // both the order and cart cookies
-    const encodedOrder = getCookie(event.cookies, orderCookieName);
+    const encodedOrder = event.cookies.get(orderCookieName)
     if (encodedOrder) {
         const orderId = getOrder(encodedOrder);
 
@@ -37,14 +37,14 @@ export async function handle({ event, resolve }) {
         // if paid, reset local values and delete cookies
         if (result.order?.state === 'OPEN') {
             event.locals.orderId = undefined;
-            deleteCookie(event.cookies, orderCookieName);
+            event.cookies.delete(orderCookieName);
             event.locals.cart = [];
-            deleteCookie(event.cookies, cartCookieName);
+            event.cookies.delete(cartCookieName);
         }
     }
 
     // check if cart cookie exists. If not, create it
-    const encodedCart = getCookie(event.cookies, cartCookieName);
+    const encodedCart = event.cookies.get(cartCookieName);
     if (!encodedCart) {
         event.locals.cart = Array();
 
