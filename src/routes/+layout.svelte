@@ -108,7 +108,7 @@
     <!-- cart side-panel -->
     <div id="cart-panel-container" on:focusout={handleDropdownFocusLoss}>
         {#if showCart}
-            <CartPreview cart={data.locals.cart} on:x={() => onCartClick()} />
+            <CartPreview cart={data.locals.cart} on:x={() => onCartClick()} on:cartUpdated={(event) => data.locals.cart = event.detail.cart} />
         {/if}
     </div>
 </div>

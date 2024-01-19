@@ -38,9 +38,9 @@
                             <h3 class="text-2xl mb-2">Set:</h3>
 
                             <div>
-                                {#each product.variations as variation}
+                                {#each product.variations as variation, i}
                                     <div class="mb-2">
-                                        <input type="radio" name="variation" id="{variation.id}" value="{variation.id}" class="w-5 h-5 checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500" required>
+                                        <input type="radio" name="variation" id="{variation.id}" value="{variation.id}" class="w-5 h-5 checked:bg-primary-500 checked:hover:bg-primary-500 checked:focus:bg-primary-500 border-primary-500 focus:ring-primary-500" required checked="{(i === 0) ? true : false}">
                                         <label for="{variation.id}">{variation.name} - ${ (variation.price) ? variation.price.toFixed(2) : '0.00' }</label>
                                     </div>
                                 {/each}

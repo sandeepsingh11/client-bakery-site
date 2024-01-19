@@ -39,7 +39,31 @@
         clearTimeout(timer);
         timer = setTimeout(() => {
             writeCookie(cartCookieName, cart);
-        }, 2000);
+        }, 1000);
+    }
+
+    /**
+     * @param {Event} e
+     * @param {string} itemId
+     */
+    function onBlur(e, itemId) {
+        // if item quantity is 0 when on blur, remove from cart
+        // @ts-ignore
+        if (e.target?.value == 0) {
+            cart.forEach((item, i) => {
+                if (item.id === itemId) {
+                    cart.splice(i, 1);
+
+                    // assign for reactivity
+                    cart = cart;
+
+                    // update cookie
+                    writeCookie(cartCookieName, cart);
+
+                    dispatch('cartUpdated', {cart});
+                }
+            });
+        }
     }
 </script>
 
@@ -80,7 +104,15 @@
                             {/if}
         
                             <!-- quantity -->
-                            <input type="number" name="quantity" value="{ item.quantity }" min="0" on:input={(e) => handleQuantityUpdate(e, item.id)} class="w-[50px] rounded mb-px p-1 focus:ring-primary-500 focus:border-primary-500">
+                            <input 
+                                type="number" 
+                                name="quantity" 
+                                value="{ item.quantity }" 
+                                min="0" 
+                                on:input={(e) => handleQuantityUpdate(e, item.id)} 
+                                on:blur={(e) => onBlur(e, item.id)} 
+                                class="w-[50px] rounded mb-px p-1 focus:ring-primary-500 focus:border-primary-500"
+                            >
 
                             <!-- item price -->
                             <p class="font-medium">${ (item.price * item.quantity).toFixed(2) }</p>

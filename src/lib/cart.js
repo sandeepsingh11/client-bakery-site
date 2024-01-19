@@ -21,9 +21,7 @@ export function addToCart(locals, cookies, cartData) {
 export function removeFromCart(itemId, locals, cookies) {
     locals.cart.forEach((item, i) => {
         if (item.id === itemId) {
-            // handle removing if only 1 element left
-            if (locals.cart.length === 1) locals.cart = [];
-            else locals.cart = locals.cart.splice(i, 1);
+            locals.cart.splice(i, 1);
             
             writeCookieViaServer(cookies, cartCookieName, locals.cart);
             
