@@ -5,7 +5,7 @@
     export let _data;
 </script>
 
-<section class="bg-gradient-to-tr from-secondary-800 to-secondary-500 py-12">
+<section class="bg-gradient-to-tr from-secondary-600 to-secondary-500 py-12">
     <div class="flex flex-wrap items-center">
         <!-- about image -->
         <div class="w-full md:w-1/2">

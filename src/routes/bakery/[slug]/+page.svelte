@@ -25,7 +25,7 @@
         </div>
 
         <!-- product info -->
-        <div class="md:ml-12">
+        <div class="md:ml-12 xl:w-[500px]">
             <div class="mb-8">
                 <h1 class="text-3xl lg:text-5xl font-medium mb-2 md:mt-2">{ product.name }</h1>
                 <p class="text-lg">{ product.desc ?? '' }</p>

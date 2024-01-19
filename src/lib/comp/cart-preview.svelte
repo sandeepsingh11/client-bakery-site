@@ -1,6 +1,5 @@
 <script>
-    import { deleteCookieByName, getCookieByName, writeCookie } from "$lib/cookies";
-    import { CreditCard, X } from "lucide-svelte";
+    import { MoveRight, X } from "lucide-svelte";
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
@@ -12,20 +11,12 @@
     cart.forEach(item => {
         subtotal += (item.price * item.quantity);
     });
-
-    function demo() {
-        writeCookie('demo', '{a: 1, b: 2}');
-
-        // console.log(getCookieByName('demo'));
-
-        // deleteCookieByName('demo');
-    }
 </script>
 
 <div class="z-10 fixed top-0 right-0 bg-white w-full md:w-[350px] h-full overflow-y-auto border-l" id="cart-panel">
     <div class="p-4">
         <div class="flex justify-between mb-6">
-            <button class="text-lg font-medium" on:click={demo}>Cart:</button>
+            <button class="text-lg font-medium">Cart:</button>
             <button on:click={() => dispatch('x')}><X /></button>
         </div>
 
@@ -77,7 +68,7 @@
             </div>
 
             <div>
-                <a href="/checkout" class="block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white text-center"><CreditCard size=16 class="inline-block" /> Checkout</a>
+                <a href="/checkout" class="block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white text-center">Checkout <MoveRight size=16 strokeWidth="2.5" class="inline-block" /></a>
             </div>
         {:else}
             <div>
