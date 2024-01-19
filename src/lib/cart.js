@@ -25,7 +25,7 @@ export function removeFromCart(itemId, locals, cookies) {
             if (locals.cart.length === 1) locals.cart = [];
             else locals.cart = locals.cart.splice(i, 1);
             
-            createCartCookie(cookies, locals.cart);
+            writeCookieViaServer(cookies, cartCookieName, locals.cart);
             
             return;
         }

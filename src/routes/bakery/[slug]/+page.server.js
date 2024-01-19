@@ -41,7 +41,6 @@ export const actions = {
         /** @type {typeof locals.cart[0]['variation'] | undefined} */
         let variation;
         product.variations.forEach(v => {
-            console.log(v);
             if (variationId === v.id) {
                 variation = {
                     id: v.id,
@@ -75,7 +74,6 @@ export const actions = {
         mods.forEach(mod => {
             price += mod.price;
         });
-        console.log(price);
 
         const cartData = {
             id: randomUUID(),

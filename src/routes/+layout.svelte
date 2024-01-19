@@ -68,13 +68,18 @@
 
             <!-- hamburger -->
             <div class="mr-2">
-                <button on:click={() => onCartClick()}>({data.locals.cart.length}) <ShoppingCart class="inline-block" size=18 /></button>
                 <button type="button" id="nav-mobile-hamburger" on:click={toggleMobileDropdown}>
                     {#if showMobileMenu}
                         <X size=24 class="inline-block" />    
                     {:else}
                         <Menu size=24 class="inline-block" />
                     {/if}
+                </button>
+
+                <!-- cart button -->
+                <button on:click={() => onCartClick()} class="fixed bottom-0 right-0 bg-primary-300 rounded-full m-2 p-4">
+                    <ShoppingCart class="relative top-[3px]" size=18 />
+                    <span class="absolute top-[3px] left-0 w-full text-sm">{data.locals.cart.length}</span>
                 </button>
             </div>
 
