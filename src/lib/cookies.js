@@ -56,7 +56,8 @@ export function writeCookieViaServer(cookies, name, data, expDays = 14) {
 
     cookies.set(name, btoa(JSON.stringify(data)), {
         path: '/',
-        expires: date
+        expires: date,
+        httpOnly: (name === cartCookieName) ? false : true
     });
 }
 

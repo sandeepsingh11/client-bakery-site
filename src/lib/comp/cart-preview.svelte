@@ -1,4 +1,5 @@
 <script>
+    import { cartCookieName, writeCookie } from "$lib/cookies";
     import { MoveRight, X } from "lucide-svelte";
     import { createEventDispatcher } from "svelte";
 
@@ -11,6 +12,35 @@
     cart.forEach(item => {
         subtotal += (item.price * item.quantity);
     });
+
+    /** @type NodeJS.Timeout */
+    let timer;
+
+    /**
+     * @param {Event} e
+     * @param {string} itemId
+     */
+    function handleQuantityUpdate(e, itemId) {
+        // update price
+        subtotal = 0.00;
+        cart.forEach((item, i) => {
+            if (item.id === itemId) {
+                // @ts-ignore
+                item.quantity = e.target?.value;
+
+                // assign for reactivity
+                cart[i] = item;
+            }
+
+            subtotal += (item.price * item.quantity);
+        });
+
+        // debouce the cookie update
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            writeCookie(cartCookieName, cart);
+        }, 2000);
+    }
 </script>
 
 <div class="z-10 fixed top-0 right-0 bg-white w-full md:w-[350px] h-full overflow-y-auto border-l" id="cart-panel">
@@ -22,7 +52,7 @@
 
         {#if cart.length > 0}
             <!-- list cart items -->
-            {#each cart.reverse() as item}
+            {#each cart as item}
                 <div class="flex">
                     <!-- item image -->
                     <div class="w-[100px] h-[100px]">
@@ -39,15 +69,20 @@
                                     <input type="hidden" name="itemId" value="{item.id}">
                                 </form>
                             </div>
+                            <!-- variation data -->
                             <p class="mb-px">{ item.variation.name } (${ (item.variation.price) ? item.variation.price.toFixed(2) : '0.00' })</p>
         
+                            <!-- mods -->
                             {#if item.mods}
                                 {#each item.mods as mod}
                                     <p class="text-sm mb-px ml-1">{ mod.name } (${ mod.price.toFixed(2) })</p>
                                 {/each}
                             {/if}
         
-                            <p class="mb-px">Qty: { item.quantity }</p>
+                            <!-- quantity -->
+                            <input type="number" name="quantity" value="{ item.quantity }" min="0" on:input={(e) => handleQuantityUpdate(e, item.id)} class="w-[50px] rounded mb-px p-1 focus:ring-primary-500 focus:border-primary-500">
+
+                            <!-- item price -->
                             <p class="font-medium">${ (item.price * item.quantity).toFixed(2) }</p>
                         </div>
                     </div>
