@@ -50,20 +50,33 @@
         // if item quantity is 0 when on blur, remove from cart
         // @ts-ignore
         if (e.target?.value == 0) {
-            cart.forEach((item, i) => {
-                if (item.id === itemId) {
-                    cart.splice(i, 1);
-
-                    // assign for reactivity
-                    cart = cart;
-
-                    // update cookie
-                    writeCookie(cartCookieName, cart);
-
-                    dispatch('cartUpdated', {cart});
-                }
-            });
+            removeItem(itemId);
         }
+    }
+
+    /**
+     * @param {string} itemId
+     */
+    function removeItem(itemId) {
+        cart.forEach((item, i) => {
+            if (item.id === itemId) {
+                cart.splice(i, 1);
+
+                // assign for reactivity
+                cart = cart;
+
+                // update cookie
+                writeCookie(cartCookieName, cart);
+
+                dispatch('cartUpdated', {cart});
+            }
+        });
+
+        // update price
+        subtotal = 0.00;
+        cart.forEach(item => {
+            subtotal += (item.price * item.quantity);
+        });
     }
 </script>
 
@@ -86,12 +99,10 @@
                     <!-- item text -->
                     <div class="ml-2 md:ml-4 py-1 grow">
                         <div>
+                            <!-- item heading -->
                             <div class="flex justify-between">
                                 <h4 class="text-lg md:text-xl font-medium mb-1">{ item.name }</h4>
-                                <form action="/bakery?/removeItem" method="post">
-                                    <button><X /></button>
-                                    <input type="hidden" name="itemId" value="{item.id}">
-                                </form>
+                                <button on:click={() => removeItem(item.id)}><X /></button>
                             </div>
                             <!-- variation data -->
                             <p class="mb-px">{ item.variation.name } (${ (item.variation.price) ? item.variation.price.toFixed(2) : '0.00' })</p>

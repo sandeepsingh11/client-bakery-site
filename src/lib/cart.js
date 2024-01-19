@@ -11,21 +11,3 @@ export function addToCart(locals, cookies, cartData) {
 
     writeCookieViaServer(cookies, cartCookieName, locals.cart);
 }
-
-/**
- * Remove a cart item at the specified cart item id
- * @param {string} itemId 
- * @param {App.Locals} locals
- * @param {import ('@sveltejs/kit').Cookies} cookies
- */
-export function removeFromCart(itemId, locals, cookies) {
-    locals.cart.forEach((item, i) => {
-        if (item.id === itemId) {
-            locals.cart.splice(i, 1);
-            
-            writeCookieViaServer(cookies, cartCookieName, locals.cart);
-            
-            return;
-        }
-    });
-}
