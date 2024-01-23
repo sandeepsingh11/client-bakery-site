@@ -1,8 +1,12 @@
 {
     "navItems": [
         {
-            "name": "Bakery",
+            "name": "Shop",
             "url": "/bakery"
+        },
+        {
+            "name": "About",
+            "url": "/about"
         }
     ]
 }
