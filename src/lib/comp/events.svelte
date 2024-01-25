@@ -12,7 +12,7 @@
 
     <div class="lg:w-[80%] lg:mx-auto">
         {#each events as event}
-            <a href="{ (event.url) ? event.url : '#' }" class="flex rounded mb-4 focus:ring-2 odd:bg-primary-100 odd:hover:bg-primary-200 odd:focus:bg-primary-200 odd:focus:ring-primary-200 even:bg-secondary-200 even:hover:bg-secondary-300 even:focus:bg-secondary-300 even:focus:ring-secondary-300 focus:outline-none">
+            <a href="{ (event.url) ? event.url : '#' }" class="event flex rounded mb-4 focus:ring-2 odd:bg-primary-100 odd:hover:bg-primary-200 odd:focus:bg-primary-200 odd:focus:ring-primary-200 even:bg-secondary-200 even:hover:bg-secondary-300 even:focus:bg-secondary-300 even:focus:ring-secondary-300 focus:outline-none">
                 <!-- event image -->
                 <div class="min-w-[100px] w-[100px] min-h-[100px] md:min-w-[150px] md:w-[150px] md:min-h-[150px] md:h-[150px]">
                     <img src="{ (event.thumbnail) ? event.thumbnail : 'https://placehold.co/500' }" alt="{ (event.thumbnailAlt) ? event.thumbnailAlt : 'Generic event thumbnail' }" class="w-full h-full object-cover rounded">

@@ -146,7 +146,7 @@
             </div>
 
             <div>
-                <a href="/checkout" class="block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white text-center">Checkout <MoveRight size=16 strokeWidth="2.5" class="inline-block" /></a>
+                <a href="/checkout" role="button" class="block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white text-center">Checkout <MoveRight size=16 strokeWidth="2.5" class="inline-block" /></a>
             </div>
         {:else}
             <div>

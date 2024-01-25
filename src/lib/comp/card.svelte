@@ -26,7 +26,7 @@
 
     <!-- buttons -->
     <div class="flex flex-row text-center">
-        <a href="/bakery/{ item.slug }" class="inline-block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white"><Cookie size=16 class="inline" /> View</a>
+        <a href="/bakery/{ item.slug }" role="button" class="inline-block w-full rounded p-2 bg-primary-600 hover:bg-primary-500 focus:bg-primary-500 text-white"><Cookie size=16 class="inline" /> View</a>
         <!-- <button class="inline-block w-1/2 p-2 rounded-r bg-secondary-600 hover:bg-secondary-500 focus:bg-secondary-500 text-black" on:click={onCartClick}><ShoppingCart size=16 class="inline" /> Add</button> -->
     </div>
 </div>
