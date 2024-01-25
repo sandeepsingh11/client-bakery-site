@@ -32,6 +32,18 @@ collections:
           - { name: aboutImage, label: About Image, widget: image }
           - { name: aboutImageAlt, label: About Image Description, widget: string }
           - { name: aboutSnippet, label: About Snippet, widget: markdown }
+      - label: About
+        name: about
+        file: "src/lib/_data/pages/about.json"
+        fields:
+          - { name: aboutSection1, label: About section 1, widget: markdown, minimal: true }
+          - { name: aboutSection1Img, label: Image 1, widget: image }
+          - { name: aboutSection1ImgAlt, label: Image 1 description, widget: string }
+          - { name: aboutSection2, label: About section 2, widget: markdown, minimal: true }
+          - { name: aboutSection2Img1, label: Image 2, widget: image, hint: Side-by-side with Image 3 }
+          - { name: aboutSection2Img1Alt, label: Image 2 description, widget: string }
+          - { name: aboutSection2Img2, label: Image 3, widget: image, hint: Side-by-side with Image 2 }
+          - { name: aboutSection2Img2Alt, label: Image 3 description, widget: string }
   - label: Events
     name: events
     editor:
