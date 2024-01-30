@@ -67,7 +67,7 @@ collections:
             - { name: thumbnailAlt, label: Event thumbnail name, widget: string, required: false }
             - { name: url, label: Event URL, widget: string, required: false }
             - { name: date, label: Event Date, widget: datetime, date_format: 'do MMM yyyy', time_format: false, format: 'yyyy-MMM-dd' }
-            - { name: time, label: Event time, widget: datetime, date_format: false, time_format: 'hh:mm aa', format: 'HH:mm' }
+            - { name: time, label: Event time, widget: datetime, date_format: false, time_format: 'hh:mm aa', format: 'hh:mm aa' }
   - label: Settings
     name: settings
     editor:

@@ -19,4 +19,4 @@
 
 <!-- <Categories /> -->
 
-<Events />
+<Events limit={3} />

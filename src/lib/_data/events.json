@@ -8,7 +8,7 @@
       "thumbnailAlt": "A",
       "url": "/",
       "date": "2023-Dec-26",
-      "time": "22:11"
+      "time": "10:11 PM"
     },
     {
       "title": "Test 2",
@@ -18,13 +18,21 @@
       "thumbnailAlt": "A",
       "url": "/",
       "date": "2023-Dec-26",
-      "time": "15:33"
+      "time": "03:33 PM"
     },
     {
       "date": "2023-Dec-27",
-      "time": "14:47",
+      "time": "02:47 PM",
       "title": "Another event",
       "desc": "Some cool new description here. Get ready!"
+    },
+    {
+      "date": "2024-Jan-31",
+      "time": "01:44 AM",
+      "title": "4th Event",
+      "desc": "Some cools event description!",
+      "thumbnail": "/uploads/blob.svg",
+      "thumbnailAlt": "blob"
     }
   ]
 }
